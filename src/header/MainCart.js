@@ -1,16 +1,16 @@
 import { useContext } from "react"
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice"
-import { TotalOrderCounContext } from "../contexts/TotalOrdersCount";
+import { useSelector } from "react-redux";
 
-export default function MainCart(){
+export default function MainCart() {
     const totalPriceContext = useContext(WholeOrderPriceContext)
     const totalPrice = totalPriceContext[0];
-    const orderCountContext = useContext(TotalOrderCounContext)
-    const count = orderCountContext[0]
-    return(
+    const data = useSelector(state => state)
+
+    return (
         <div className="mainCartDiv">
             <div className="mainCartIkon">
-                <div className="cartItemCount">{count}</div>
+                <div className="cartItemCount">{data ? data.length : 0}</div>
             </div>
             <div className="HeaderItemTotalPrice">Total price : {totalPrice.toFixed(2)}</div>
         </div>

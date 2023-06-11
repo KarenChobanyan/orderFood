@@ -1,40 +1,50 @@
-import { useCallback, useContext, useEffect } from "react"
-import { ItemTypeContext } from "../contexts/Item"
 import MenuOption from "./MenuOption"
-import { FilteredMenuContext } from "../contexts/FilteredMenu"
 import MainCart from "./MainCart"
+import { Link } from "react-router-dom"
 
-export default function HeaderNav(){
-        const [state,setState]  = useContext(ItemTypeContext)
-        const menuContext = useContext(FilteredMenuContext)
-        const dispatchMenu = menuContext[1]
-   
+export default function HeaderNav() {
 
-    const clickHendler = useCallback((tetx)=>{
-        setState(false)
-        dispatchMenu({type:tetx})
-    },[state])
-    return(
+    return (
         <>
-        <div className="HeaderNavDiv">
-           <div className="navLine">
-            <div className="navFirst" onClick={()=>setState(true)}>ALL MENU</div>
-            <div className="navSecond">CATEGORIES
-            <div className="categotyOptions">
-      <MenuOption text={"Snacks"} clickHendler={()=>clickHendler("snaks")} key={Math.random()}/>
-      <MenuOption text={"Sharing platters"} clickHendler={()=>clickHendler("sharing platters")} key={Math.random()}/>
-      <MenuOption text={"Desserts"} clickHendler={()=>clickHendler("desserts")} key={Math.random()}/>
-      <MenuOption text={"Fast Food"} clickHendler={()=>clickHendler("fast Food")} key={Math.random()}/>
-      <MenuOption text={"Peri-Peri chicken"} clickHendler={()=>clickHendler("peri-peri chicken")} key={Math.random()}/>
-      <MenuOption text={"Side Dishes"} clickHendler={()=>clickHendler("side Dishes")} key={Math.random()}/> 
-      <MenuOption text={"Burgers"} clickHendler={()=>clickHendler("burgers")} key={Math.random()}/>
-      <MenuOption text={"Salads"} clickHendler={()=>clickHendler("salads")} key={Math.random()}/>
+            <div className="HeaderNavDiv">
+                <div className="navLine">
+                    <Link to={"/"} style={{ textDecoration: "none" }}>
+                        <div className="navFirst">ALL MENU</div>
+                    </Link>
+                    <div className="navSecond">CATEGORIES
+                        <div className="categotyOptions">
+                            <Link to={`/menu/snaks`} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Snacks"} />
+                            </Link>
+                            <Link to={"/menu/sharing platters"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Sharing platters"} />
+                            </Link>
+                            <Link to={"/menu/desserts"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Desserts"} />
+                            </Link>
+                            <Link to={"/menu/fast Food"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Fast Food"} />
+                            </Link>
+                            <Link to={"/menu/peri-peri chicken"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Peri-Peri chicken"} />
+                            </Link>
+                            <Link to={"menu/side Dishes"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Side Dishes"} />
+                            </Link>
+                            <Link to={"menu/burgers"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Burgers"} />
+                            </Link>
+                            <Link to={"menu/salads"} style={{ textDecoration: "none" }}>
+                                <MenuOption text={"Salads"} />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-                </div>
-           </div>
-                <MainCart/>
-        </div>
-        <div className="setLanguage"></div>
+                <Link to={"/cart"} style={{ textDecoration: "none" }}>
+                    <MainCart />
+                </Link>
+            </div>
+            <div className="setLanguage"></div>
         </>
     )
 }

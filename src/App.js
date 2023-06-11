@@ -1,15 +1,20 @@
 import { useReducer, useState } from 'react';
 import './App.css';
 import { FilteredMenuContext } from './contexts/FilteredMenu';
-import { ItemTypeContext } from './contexts/Item.js';
 import data from './data/menuData.json';
 import Header from './header/Header';
 import ItemList from './main/ItemList';
 import './styles/main.css';
-import ButtonBack from './main/ButtonBack';
+import './styles/cart.css'
 import {WholeOrderPriceContext} from "./contexts/WholeOrderPrice";
-import {TotalOrderCounContext} from "./contexts/TotalOrdersCount";
-import { ItemCountContetx } from './contexts/ItemCount';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MainMenu from './main/MainMenu';
+import { Provider } from 'react-redux';
+import {store} from './redux/store/store'
+import Cart from './cart/Cart';
+
+
+
 const menu = [...data]
 function reducer(state, actiion) {
   switch (actiion.type) {
@@ -35,25 +40,27 @@ function reducer(state, actiion) {
 
 }
 function App() {
-  const [mainMenu, setMainMenu] = useState(true);
   const [totalPrice,setTotalPrice] = useState(0)
   const [totalCount,setTotalCount] = useState(0)
   const [filteredMenu, dispatch] = useReducer(reducer, [])
+
   return (
+    <BrowserRouter>
+    <Provider store={store}>
     <div>
       <WholeOrderPriceContext.Provider value={[totalPrice,setTotalPrice]}>
-        <TotalOrderCounContext.Provider value={[totalCount,setTotalCount]}>
       <FilteredMenuContext.Provider value={[filteredMenu, dispatch]}>
-        <ItemTypeContext.Provider value={[mainMenu, setMainMenu]}>
           <Header />
-          {!mainMenu?<ButtonBack/>:null}
-          
-          <ItemList />
-        </ItemTypeContext.Provider>
+          <Routes>
+            <Route path='/' element={<MainMenu />}/>
+            <Route path='/menu/:category' element={<ItemList/>}/>
+            <Route path='/cart' element={<Cart/>}/>
+          </Routes>
       </FilteredMenuContext.Provider>
-      </TotalOrderCounContext.Provider>
       </WholeOrderPriceContext.Provider>
     </div>
+    </Provider>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,5 @@
-export default function HeaderTitle(){
-    return(
+export default function HeaderTitle() {
+    return (
         <div className="headerTitleDiv">
             <div className="headerTitleFirstLine">
                 <div className="headerTitleBoldText">WE</div>

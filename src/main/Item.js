@@ -1,37 +1,64 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import SubItem from "./SubItem";
 import { ItemTotalPriceContext } from "../contexts/ItemToTalPrice"
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
-import { TotalOrderCounContext } from "../contexts/TotalOrdersCount";
+import { OrderedItemContext } from "../contexts/OrderedItem"
 import ItemFooter from "./ItemFooter";
+import { useDispatch } from "react-redux";
+import { OrderedSubItemsContext } from "../contexts/OrderedSubItems"
 
-export default function Item({ data }) {
-    // const [count, setCount] = useState(0)
+export default function Item({ menu }) {
     const [amount, setAmount] = useState(0);
-    const [totalPrice,setTotalPrice] = useContext(WholeOrderPriceContext)
-    const [ordersCount,setOrdersCount] = useContext(TotalOrderCounContext)
+    const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
+    const [orderedSubItems, setOrderedSubItems] = useState([])
+    const [added, setOrder] = useState()
+    const dispatch = useDispatch()
+    const orderDate = new Date().getMilliseconds() + Math.random()
+
+    useEffect(() => {
+        setOrder(false)
+    }, [added])
 
 
-    const addOrder = useCallback(() => {
+    const order = useMemo(() => {
+        return {
+            itemTitle: menu.name,
+            itmeImage: menu.images,
+            description: menu.description,
+            date: orderDate,
+            subItem: orderedSubItems
+        }
+
+    }, [orderedSubItems])
+
+
+    const addOrder = useCallback((e) => {
         if (+amount > 0) {
-
-            setOrdersCount(prev => +prev + 1)
+            dispatch({
+                type: "ADD_an_ORDER",
+                payload: order
+            })
             setTotalPrice(prev => +prev + +amount)
+            setOrderedSubItems([])
+            setOrder(true)
         }
     }, [amount])
+
     return (
         <ItemTotalPriceContext.Provider value={[amount, setAmount]}>
-            {/* <ItemCountContetx.Provider value={[count, setCount]}> */}
-                <div className="item" >
-                    <div className="itemImage" style={{ backgroundImage: `url(${data.images})` }}></div>
-                    <div className="itemTExtDiv">
-                        <div className="itemTitle">{data.name}</div>
-                        <div className="itemDescription">{data.description}</div>
-                        {data["sub-items"] ? data["sub-items"].map((el) => <SubItem itemTitle={el.name} price={el.price} key={Math.random()} />) : <SubItem itemTitle={data.name} price={data.price} key={Math.random()} />}
-                        <ItemFooter clickHendler={addOrder} />
+            <OrderedItemContext.Provider value={added}>
+                <OrderedSubItemsContext.Provider value={[orderedSubItems, setOrderedSubItems]}>
+                    <div className="item" >
+                        <div className="itemImage" style={{ backgroundImage: `url(${menu.images})` }}></div>
+                        <div className="itemTExtDiv">
+                            <div className="itemTitle">{menu.name}</div>
+                            <div className="itemDescription">{menu.description}</div>
+                            {menu["sub-items"] ? menu["sub-items"].map((el, index) => <SubItem itemTitle={el.name} price={el.price} key={index + el.price} />) : <SubItem itemTitle={menu.name} price={menu.price} key={menu.index + menu.price} />}
+                            <ItemFooter clickHendler={addOrder} />
+                        </div>
                     </div>
-                </div>
-            {/* </ItemCountContetx.Provider> */}
+                </OrderedSubItemsContext.Provider>
+            </OrderedItemContext.Provider>
         </ItemTotalPriceContext.Provider>
     )
 }

@@ -1,10 +1,9 @@
-import { useContext } from "react"
-import { ItemTypeContext } from "../contexts/Item"
+import { Link } from "react-router-dom"
 
 export default function ButtonBack(){
-    const context = useContext(ItemTypeContext)
-    const setState = context[1]
     return(
-        <div className="buttonBack" onClick={()=>setState(true)}></div>
+        <Link to={"/"}>
+        <div className="buttonBack"></div>
+        </Link>
     )
 }
