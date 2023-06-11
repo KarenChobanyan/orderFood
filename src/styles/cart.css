@@ -63,6 +63,7 @@
 }
 
 .cartSubItemTitle {
+    width: 250px;
     color: rgb(175, 135, 3);
     font-size: 20px;
     font-weight: 600;
@@ -70,6 +71,7 @@
 }
 
 .cartSubItemPrice {
+    width: 100px;
     color: green;
     font-size: 20px;
     font-weight: 600;

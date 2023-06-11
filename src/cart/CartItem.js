@@ -6,7 +6,7 @@ import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
 export default (props) => {
     const { image, title, description, index, date } = props
     const data = useSelector(state => state[index])
-    const currentItmetotalPrice = data.subItem.reduce((acc, el) => acc += Number(el.price), 0)
+    const currentItmetotalPrice = data.subItem.reduce((acc, el) => acc += Number(el.price) * el.count, 0)
     console.log(currentItmetotalPrice);
     const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
     const dispatch = useDispatch()

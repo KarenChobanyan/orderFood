@@ -12,14 +12,14 @@ export default function SubItem(props) {
     const [count, setCount] = useState(0)
     const orderState = useContext(OrderedItemContext)
 
-   const order = useMemo(()=>{
-    return {
-        name:itemTitle,
-        price:price,
-        count:1
-    }
-   },[])
-  
+    const order = useMemo(() => {
+        return {
+            name: itemTitle,
+            price: price,
+            count: 1
+        }
+    }, [])
+
 
     useEffect(() => {
         setCount(0)
@@ -28,8 +28,13 @@ export default function SubItem(props) {
 
     const increaseCount = useCallback((e) => {
         let tmp = orderedSubItems
-        tmp.push(order)
-        setOrderedSubItems(tmp)
+        let index = orderedSubItems.findIndex((el) => el.name == order.name)
+        if (index == -1) {
+            tmp.push(order)
+            setOrderedSubItems(tmp)
+        } else {
+            orderedSubItems[index].count++
+        }
         setCount(count + 1)
         setAmount((prev) => +prev + +price)
     }, [count]);
@@ -37,7 +42,9 @@ export default function SubItem(props) {
     const decreaseCount = useCallback(() => {
         if (+count > 0) {
             let tmp = orderedSubItems
-            // tmp.splice(tmp.length,1)
+            let index = orderedSubItems.findIndex((el) => el.name == order.name)
+            orderedSubItems[index].count--
+
             setOrderedSubItems(tmp)
             setCount(prev => prev - 1)
             setAmount((prev) => +prev - +price)
