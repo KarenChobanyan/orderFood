@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function MainCart() {
     const totalPriceContext = useContext(WholeOrderPriceContext)
     const totalPrice = totalPriceContext[0];
-    const data = useSelector(state => state)
+    const data = useSelector(state => state.cart)
 
     return (
         <div className="mainCartDiv">

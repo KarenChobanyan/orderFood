@@ -1,23 +1,20 @@
-import { useContext, useEffect } from "react"
-import { FilteredMenuContext } from "../contexts/FilteredMenu"
+import {  useEffect } from "react"
 import Item from "./Item"
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ButtonBack from "./ButtonBack"
+import { filterMenu } from "../store/actions/MenuActions"
 
 export default function ItemList() {
-    const reducer = useContext(FilteredMenuContext)
-    const dispatch = reducer[1]
-    const menuContext = useContext(FilteredMenuContext)
-    const menu = menuContext[0]
+    const dispatch = useDispatch()
     const { category } = useParams()
+    const menu = useSelector(state=>state.menu)
 
 
     useEffect(() => {
-        dispatch({ type: category })
+        dispatch(filterMenu(category))
     }, [category])
 
-    const cart = useSelector(state => state)
 
     return (
         <>

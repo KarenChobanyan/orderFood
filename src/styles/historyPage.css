@@ -1,0 +1,39 @@
+.historyMainDiv{
+    width: 80%;
+    height: 500px;
+    overflow: visible;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.historyItem{
+    width: 700px;
+    height: 35px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px black;
+}
+
+.historyOrderDate{
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.historyOrderPrice{
+    width: 200px;
+    height:35px ;
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(100, 21, 21);
+}

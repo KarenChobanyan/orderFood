@@ -113,14 +113,24 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
 }
 
+
+.headerIkonDiv{
+width: 420px;
+height: 100px;
+display: flex;
+flex-direction: row;
+}
+
+
+
 .mainCartDiv {
-    width: 200px;
+    width: 120px;
     height: 80px;
     display: flex;
     margin-left: -15px;
-    transform: translateX(-100px);
     flex-direction: column;
     align-items: center;
 }
@@ -138,7 +148,7 @@ body {
     width: 25px;
     height: 25px;
     transform: translate(30px, -5px);
-    background: rgb(247, 94, 6);
+    background: rgb(245, 135, 9);
     border-radius: 50%;
     color: white;
     text-align: center;
@@ -152,6 +162,36 @@ body {
     color: rgb(62, 230, 99);
     text-align: center;
 }
+
+.historyIkonDiv{
+    width: 120px;
+    height: 80px;
+    display: flex;
+    margin-left: -15px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.historyIkon{
+    width: 80px;
+    height: 45px;
+    margin-top: 6px;
+    background-image: url(../images/order_history.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.cartHistoryCount{
+    width: 25px;
+    height: 25px;
+    transform: translate(30px, -10px);
+    background: rgb(2, 136, 9);
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
 
 .navFirst {
     width: 160px;

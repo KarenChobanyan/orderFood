@@ -6,6 +6,7 @@ import { OrderedItemContext } from "../contexts/OrderedItem"
 import ItemFooter from "./ItemFooter";
 import { useDispatch } from "react-redux";
 import { OrderedSubItemsContext } from "../contexts/OrderedSubItems"
+import { addOrder } from "../store/actions/OrderActions";
 
 export default function Item({ menu }) {
     const [amount, setAmount] = useState(0);
@@ -32,12 +33,9 @@ export default function Item({ menu }) {
     }, [orderedSubItems])
 
 
-    const addOrder = useCallback((e) => {
+    const addHendler = useCallback((e) => {
         if (+amount > 0) {
-            dispatch({
-                type: "ADD_an_ORDER",
-                payload: order
-            })
+            dispatch(addOrder(order))
             setTotalPrice(prev => +prev + +amount)
             setOrderedSubItems([])
             setOrder(true)
@@ -54,7 +52,7 @@ export default function Item({ menu }) {
                             <div className="itemTitle">{menu.name}</div>
                             <div className="itemDescription">{menu.description}</div>
                             {menu["sub-items"] ? menu["sub-items"].map((el, index) => <SubItem itemTitle={el.name} price={el.price} key={index + el.price} />) : <SubItem itemTitle={menu.name} price={menu.price} key={menu.index + menu.price} />}
-                            <ItemFooter clickHendler={addOrder} />
+                            <ItemFooter clickHendler={addHendler} />
                         </div>
                     </div>
                 </OrderedSubItemsContext.Provider>

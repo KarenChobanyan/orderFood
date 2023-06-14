@@ -2,22 +2,20 @@ import { useDispatch, useSelector } from "react-redux"
 import CartSubItem from "./CartSubItem";
 import { useCallback, useContext } from "react";
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
+import { removeOrder } from "../store/actions/OrderActions";
 
 export default (props) => {
     const { image, title, description, index, date } = props
-    const data = useSelector(state => state[index])
+    const data = useSelector(state => state.cart[index])
     const currentItmetotalPrice = data.subItem.reduce((acc, el) => acc += Number(el.price) * el.count, 0)
-    console.log(currentItmetotalPrice);
     const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
     const dispatch = useDispatch()
 
-    const removeOrder = useCallback(() => {
+    const removeHendler = useCallback(() => {
         const price = totalPrice - currentItmetotalPrice
         setTotalPrice(price)
-        dispatch({
-            type: "Remove_Order",
-            payload: date
-        });
+        dispatch(removeOrder(data.date))
+        
     }, [totalPrice])
 
     return (
@@ -37,7 +35,7 @@ export default (props) => {
                     <div className="cartItemTotalPriceText">Total price: {currentItmetotalPrice}</div>
                 </div>
             </div>
-            <div className="removeCartItem" onClick={removeOrder}></div>
+            <div className="removeCartItem" onClick={removeHendler}></div>
         </div>
     )
 }

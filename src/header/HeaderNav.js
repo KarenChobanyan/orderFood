@@ -1,8 +1,11 @@
 import MenuOption from "./MenuOption"
 import MainCart from "./MainCart"
 import { Link } from "react-router-dom"
+import HistoryIkon from "./HistoryIkon"
+import { useSelector } from "react-redux"
 
 export default function HeaderNav() {
+    const history = useSelector(state=>state.history)
 
     return (
         <>
@@ -40,9 +43,16 @@ export default function HeaderNav() {
                         </div>
                     </div>
                 </div>
+                    <div className="headerIkonDiv">
                 <Link to={"/cart"} style={{ textDecoration: "none" }}>
                     <MainCart />
                 </Link>
+            {history.length>0 &&
+            <Link to={"/history"} style={{ textDecoration: "none" }}>
+            <HistoryIkon/>
+            </Link>
+            }   
+                </div>
             </div>
             <div className="setLanguage"></div>
         </>

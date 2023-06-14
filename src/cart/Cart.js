@@ -1,27 +1,39 @@
 import { useDispatch, useSelector } from "react-redux"
 import CartItem from "./CartItem";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
 import { Link } from "react-router-dom";
-let cart
+import { confirmOrder } from "../store/actions/OrderActions";
+import { getDate } from "../otherFunctions/getDate";
+import NoOrder from "./NoOrder";
+let cart = undefined
 
 export default () => {
-    const data = useSelector(state => state)
+    const data = useSelector(state => state.cart)
     const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
     const dispatch = useDispatch()
 
-    const confirmOrder = useCallback(() => {
-        dispatch({
-            type: "CONFIRM_ORDER"
-        })
-        setTotalPrice(0)
+    const order = useMemo(() => {
+        return {
+            price: totalPrice.toFixed(2),
+            time: getDate(),
+            order: data,
+            id: Math.random()
+
+        }
+
     }, [])
+
+
+    const confirmHendler = useCallback(() => {
+        dispatch(confirmOrder(order))
+        setTotalPrice(0)
+    }, [order])
 
 
     if (data) {
         cart = [...data]
     };
-
 
 
     return (
@@ -36,16 +48,11 @@ export default () => {
                 date={el.date}
             />
             ) :
-            <div className="noOrderDiv">
-                <div className="noOrder"> YOU HAVE NO ORDERS TO SHOW</div>
-                <Link to ={"/"}>
-                <button className="buttonfromCartToMain">Main menu</button>
-                </Link>
-                </div>
-                }
+            <NoOrder text = "YOU HAVE NO ORDERS TO SHOW"/>
+            }
             <div className="submitCartOrdeer">
                 {cart.length &&
-                    <div className="submitOrderInfo" onClick={confirmOrder}>
+                    <div className="submitOrderInfo" onClick={confirmHendler}>
                         <div>Confirm order for</div>
                         <div>{totalPrice.toFixed(2)}</div>
                     </div>
