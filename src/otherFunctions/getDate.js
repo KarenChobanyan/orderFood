@@ -30,10 +30,10 @@ function setMonth(month) {
     }
 };
 
-function setDateNumbers(number){
-    if(number<10){
-        return number.padStart(2,0)
-    }else{
+function setDateNumbers(number) {
+    if (number < 10) {
+        return number.padStart(2, 0)
+    } else {
         return number
     }
 }
@@ -45,8 +45,8 @@ const getDate = () => {
     const month = setMonth(new Date().getMonth())
     const hour = new Date().getHours().toString()
     const minute = new Date().getMinutes().toString()
-    const time = `${setDateNumbers(date)}.${month}.${year}   ${setDateNumbers(hour)}:${setDateNumbers(minute)}`
+    const time = `${setDateNumbers(date)}/${month}/${year}   ${setDateNumbers(hour)}:${setDateNumbers(minute)}`
     return time
 }
 
-export {getDate}
+export { getDate }

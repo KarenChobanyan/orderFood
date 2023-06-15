@@ -11,14 +11,29 @@
 
 .historyItem{
     width: 700px;
-    height: 35px;
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
     box-shadow: 0px 5px 10px black;
+}
+
+.historyItmeFirstLine{
+ width: 700px;
+ height: 35px;
+ display: flex;
+ flex-direction: row;
+ align-self: center;
+ justify-content: space-between;
+}
+
+.historyItmeSecondLine{
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .historyOrderDate{
@@ -36,4 +51,64 @@
     font-size: 22px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(100, 21, 21);
+}
+
+.historyFullItemDiv{
+    width: 500px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 5px 10px black;
+    background-color: rgba(74, 145, 74, 0.7);
+    border-radius: 10px;
+}
+
+.historyFullItemCloseDiv{
+    width: 500px;
+    height: 40px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fullItem{
+    width: 500px;
+    height: 120px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.fullItemTitle{
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: cursive;
+    color: yellow;
+    background-color: rgba(15, 15, 15,0.5);
+}
+
+.fullSubItem{
+    width: 400px;
+    height: 35px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: cursive;
+    color: goldenrod;
+    background-color: rgba(15, 15, 15,0.5)
+
 }
