@@ -1,11 +1,12 @@
 import { useContext } from "react"
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice"
 import { useSelector } from "react-redux";
+import { CART } from "../store/selectors/selectors";
 
 export default function MainCart() {
     const totalPriceContext = useContext(WholeOrderPriceContext)
     const totalPrice = totalPriceContext[0];
-    const data = useSelector(state => state.cart)
+    const data = useSelector(CART)
 
     return (
         <div className="mainCartDiv">

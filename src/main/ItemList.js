@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import ButtonBack from "./ButtonBack"
 import { filterMenu } from "../store/actions/MenuActions"
+import { MENU } from "../store/selectors/selectors"
 
 export default function ItemList() {
     const dispatch = useDispatch()
     const { category } = useParams()
-    const menu = useSelector(state=>state.menu)
+    const menu = useSelector(MENU)
 
 
     useEffect(() => {

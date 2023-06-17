@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import HistoryItem from "./HistoryItem";
 import NoOrder from "../cart/NoOrder";
+import { HISTORY } from "../store/selectors/selectors";
 
 export default () => {
-    const data = useSelector(state => state.history)
+    const data = useSelector(HISTORY)
 
     return (
         <div className="historyMainDiv">

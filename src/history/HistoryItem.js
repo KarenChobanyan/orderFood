@@ -27,7 +27,7 @@ export default (props) => {
                 <div className="historyOrderPrice">Total price {price}</div>
                 <div className="removeCartItem" onClick={delateItem}></div>
             </div>
-            <button onClick={clickHendler}>See more</button>
+            <button className="buttSeeMOre" onClick={clickHendler}>See more ...</button>
             <div className="historyItmeSecondLine">
                 {fullItemState && data.map((el) =>
                     <HistoryFullItem

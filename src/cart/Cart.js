@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux"
 import CartItem from "./CartItem";
 import { useCallback, useContext, useMemo } from "react";
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
-import { Link } from "react-router-dom";
 import { confirmOrder } from "../store/actions/OrderActions";
 import { getDate } from "../otherFunctions/getDate";
 import NoOrder from "./NoOrder";
+import { CART } from "../store/selectors/selectors";
 let cart = undefined
 
 export default () => {
-    const data = useSelector(state => state.cart)
+    const data = useSelector(CART)
     const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
     const dispatch = useDispatch()
 
