@@ -2,16 +2,20 @@ import { useDispatch, useSelector } from "react-redux"
 import CartItem from "./CartItem";
 import { useCallback, useContext, useMemo } from "react";
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
-import { confirmOrder } from "../store/actions/OrderActions";
+import { confirmOrder, preaperOrderToConfirm } from "../store/actions/OrderActions";
 import { getDate } from "../otherFunctions/getDate";
 import NoOrder from "./NoOrder";
-import { CART } from "../store/selectors/selectors";
-let cart = undefined
+import { useNavigate } from "react-router-dom";
+import { cartList, user } from "../store/selectors/selectors";
+let cart = undefined;
 
 export default () => {
-    const data = useSelector(CART)
-    const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
-    const dispatch = useDispatch()
+    const data = useSelector(cartList);
+    const userData = useSelector(user);
+    const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     const order = useMemo(() => {
         return {
@@ -22,13 +26,18 @@ export default () => {
 
         }
 
-    }, [])
+    }, []);
 
 
     const confirmHendler = useCallback(() => {
-        dispatch(confirmOrder(order))
-        setTotalPrice(0)
-    }, [order])
+        if (userData) {
+            dispatch(confirmOrder(order))
+            setTotalPrice(0)
+        } else {
+            dispatch(preaperOrderToConfirm(order))
+            navigate("/confirmOrder")
+        }
+    }, [order, userData])
 
 
     if (data) {
@@ -48,7 +57,7 @@ export default () => {
                 date={el.date}
             />
             ) :
-            <NoOrder text = "YOU HAVE NO ORDERS TO SHOW"/>
+                <NoOrder text="YOU HAVE NO ORDERS TO SHOW" />
             }
             <div className="submitCartOrdeer">
                 {cart.length &&

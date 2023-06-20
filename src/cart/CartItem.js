@@ -3,12 +3,11 @@ import CartSubItem from "./CartSubItem";
 import { useCallback, useContext } from "react";
 import { WholeOrderPriceContext } from "../contexts/WholeOrderPrice";
 import { removeOrder } from "../store/actions/OrderActions";
-import { CART } from "../store/selectors/selectors";
+import { cartItem } from "../store/selectors/selectors";
 
 export default (props) => {
     const { image, title, description, index, date } = props
-    const data = useSelector(state=>state.cart[index])
-    console.log(data);
+    const data = useSelector(cartItem(index))
     const currentItmetotalPrice = data.subItem.reduce((acc, el) => acc += Number(el.price) * el.count, 0)
     const [totalPrice, setTotalPrice] = useContext(WholeOrderPriceContext)
     const dispatch = useDispatch()
@@ -17,7 +16,7 @@ export default (props) => {
         const price = totalPrice - currentItmetotalPrice
         setTotalPrice(price)
         dispatch(removeOrder(data.date))
-        
+
     }, [totalPrice])
 
     return (

@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
+    background: rgba(20, 20, 20,0.8);
     box-shadow: 0px 5px 10px black;
 }
 
@@ -42,6 +43,7 @@
     text-align: center;
     font-size: 22px;
     font-weight: 600;
+    color: white;
 }
 
 .historyOrderPrice{
@@ -50,7 +52,7 @@
     text-align: center;
     font-size: 22px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: rgb(100, 21, 21);
+    color: rgb(255, 255, 255);
 }
 
 .buttSeeMOre{
@@ -125,4 +127,25 @@
     color: goldenrod;
     background-color: rgba(15, 15, 15,0.5)
 
+}
+
+.successTitle{
+    width: 500px;
+    height: 35px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 1000;
+    color: rgb(117, 113, 107);
+}
+
+.appriciateText{
+    width: 300px;
+    height: 25px;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: cursive;
+    color: rgb(10, 107, 18);
+    text-shadow: 3px 1px rgb(241, 221, 34);
 }

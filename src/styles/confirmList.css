@@ -1,0 +1,78 @@
+.confirm {
+    text-align: center;
+    font-size: 25px;
+    color: rgb(179, 138, 3);
+    background: green;
+    margin-top: 25px;
+    font-weight: 600;
+    font-family: cursive;
+}
+
+.confirmOrderMain {
+    width: 40%;
+    height: 400px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    background: rgba(14, 13, 13,0.8);
+    box-shadow: 0px 4px 10px black;
+}
+
+.confirmForm {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmLabels {
+    width: 180px;
+    font-size: 18px;
+    color: rgb(139, 105, 105);
+    margin-top: 15px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.confirmSelectCity {
+    width: 180px;
+}
+
+.confirmOrderDiv {
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.confirmButtons {
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(150, 114, 36);
+    cursor: pointer;
+    transition: 0.1s;
+
+}
+
+.confirmButtons:hover {
+    color: green;
+}
+
+.inputError {
+    width: 200px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(209, 63, 63);
+    background-color: rgba(93, 93, 185, 0.6);
+}

@@ -2,11 +2,12 @@ import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { delateOrder } from "../store/actions/OrderActions"
 import HistoryFullItem from "./HistoryFullItem"
+import { historyItem } from "../store/selectors/selectors"
 
 export default (props) => {
     const { time, price, id } = props
     const dispatch = useDispatch()
-    const data = useSelector(state => state.history.filter((el) => el.id === id))
+    const data = useSelector(historyItem(id))
     const [fullItemState, setFullItemState] = useState(false)
     const closeFullItem = useCallback(() => {
         setFullItemState(false)
@@ -29,10 +30,10 @@ export default (props) => {
             </div>
             <button className="buttSeeMOre" onClick={clickHendler}>See more ...</button>
             <div className="historyItmeSecondLine">
-                {fullItemState && data.map((el) =>
+                {fullItemState && data.map((el,index) =>
                     <HistoryFullItem
                         closeFullItem={closeFullItem}
-                        key={el.id}
+                        key={el.id + index}
                         data={el.order}
                     />)}
             </div>

@@ -3,10 +3,10 @@ import MainCart from "./MainCart"
 import { Link } from "react-router-dom"
 import HistoryIkon from "./HistoryIkon"
 import { useSelector } from "react-redux"
-import { HISTORY } from "../store/selectors/selectors"
+import { history } from "../store/selectors/selectors"
 
 export default function HeaderNav() {
-    const history = useSelector(HISTORY)
+    const historyList = useSelector(history)
 
     return (
         <>
@@ -48,7 +48,7 @@ export default function HeaderNav() {
                 <Link to={"/cart"} style={{ textDecoration: "none" }}>
                     <MainCart />
                 </Link>
-            {history.length>0 &&
+            {historyList.length>0 &&
             <Link to={"/history"} style={{ textDecoration: "none" }}>
             <HistoryIkon/>
             </Link>

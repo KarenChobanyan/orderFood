@@ -12,8 +12,8 @@ export default (state = INIT_STATE, action) => {
             tmp.splice(index, 1)
             return tmp;
         case CONFIRM_ORDER:
-            return INIT_STATE;
-            default:
+            return [];
+        default:
             return state
     }
 }

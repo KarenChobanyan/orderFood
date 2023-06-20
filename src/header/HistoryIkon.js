@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
-import { HISTORY } from "../store/selectors/selectors"
+import { history } from "../store/selectors/selectors"
 
 export default ()=>{
-    const data = useSelector(HISTORY)
+    const data = useSelector(history)
     const count = data.length
 
   return (

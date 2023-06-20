@@ -1,5 +1,5 @@
 import { OrderTypes } from "../types"
-import { CONFIRM_ORDER, DELETE_ORDER } from "../types/OrderType";
+import { CONFIRM_ORDER, DELETE_ORDER, PREAPER_ORDER } from "../types/OrderType";
 
 const addOrder = (payload) => {
     return {
@@ -31,11 +31,19 @@ const delateOrder = (id) => {
         payload: id
 
     }
-}
+};
+
+const preaperOrderToConfirm = (payload)=>{
+  return {
+    type:PREAPER_ORDER,
+    payload
+  }
+};
 
 export {
     addOrder,
     removeOrder,
     confirmOrder,
-    delateOrder
+    delateOrder,
+    preaperOrderToConfirm
 }
